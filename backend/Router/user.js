@@ -11,8 +11,9 @@ const secret = process.env.JWT_SECRET
 const checksignup =zod.object({
     username: zod.string().email(),
     firstName : zod.string(),
-    password: zod.string()
+    password: zod.string().min(8)
 })
+
 
 const checksignin = zod.object({
     username: zod.string().email(),
@@ -20,7 +21,7 @@ const checksignin = zod.object({
 })
 
 const checkupdate=zod.object({
-    password: zod.string().optional(),
+    password: zod.string().min(8).optional(),
     firstName: zod.string().optional(),
     lastName: zod.string().optional()
 })

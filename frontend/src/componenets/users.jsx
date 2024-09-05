@@ -15,12 +15,12 @@ export function Users({label}){
     },[filter])
 
     return(
-        <div className="p-5">
-            <div className="pt-5 px-5 border border-black border-2 rounded-lg darK:bg-black">
+        <div className="p-5 dark:bg-black dark:text-white">
+            <div className="pt-5 px-5 border border-black border-2 rounded-lg dark:border-slate-300">
                 <div className="flex justify-between p-2 darK:bg-black">
                     <div className="flex text-2xl font-bold pr-3">{label}<div className="hidden md:block text-[10px] pl-2 text-slate-500 font-normal"> to any account</div></div>
-                    <div className="flex pl-4 border border-1 rounded-lg">
-                        <input className="focus:outline-none w-20 sm:w-80 bg-white" placeholder='Search for account by Name...' 
+                    <div className="flex pl-4 border border-1 rounded-lg dark:border-slate-500">
+                        <input className="focus:outline-none w-20 sm:w-80 bg-white dark:bg-black" placeholder='Search for account by Name...' 
                         onChange={(e)=>{
                             setfilter(e.target.value)
                         }}></input>
@@ -30,7 +30,7 @@ export function Users({label}){
 
                     </div>
                 </div>
-                <div className="border border-b-2"></div>
+                <div className="border border-b-2 dark:border-slate-500"></div>
                 <div className="pt-4 pl-1">
                     {users.map(user=><User user={user} key={user._id}/>)}
                 </div>
@@ -42,7 +42,7 @@ export function Users({label}){
 function User({user}){
     const navigate=useNavigate()
     return(
-        <div className="flex justify-between px-2 py-2 border-dashed border-b-2">
+        <div className="flex justify-between px-2 py-2 border-dashed border-b-2 dark:bg-black dark:text-white dark:border-slate-500">
             <div className="flex pr-5">
                 <div className="p-1 h-12 w-12 rounded-full flex justify-center mt-1 mr-2 bg-blue-900 hover:bg-blue-400 text-xl hover:text-3xl">
                     <button className="flex flex-col font-semibold justify-center h-full text-white">
@@ -51,9 +51,9 @@ function User({user}){
                 </div>
                 <div className="pt-1 pl-3 justify-center pr-4 ">
                     <div>
-                        <span className="text-black">{user.firstName} {user.lastName}</span> 
+                        <span className="text-black dark:text-white">{user.firstName} {user.lastName}</span> 
                     </div>
-                    <span className="text-slate-500 text-sm">{user._id}</span>
+                    <span className="text-slate-500 text-sm hidden sm:block">{user._id}</span>
                 </div>
             </div>
                 <div>

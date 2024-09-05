@@ -47,6 +47,9 @@ export function Signin(){
                                     icon: "success",
                                     timer: 3000,
                                     showConfirmButton: false,
+                                    customClass: {
+                                                    popup: 'dark:bg-slate-500 dark:text-white' // Custom class applied to the main popup container
+                                                }
                                 });
                             } else {
                                 Swal.fire({
@@ -55,6 +58,9 @@ export function Signin(){
                                     icon: "error",
                                     timer: 3000,
                                     showConfirmButton: false,
+                                    customClass: {
+                                                    popup: 'dark:bg-slate-500 dark:text-white' // Custom class applied to the main popup container
+                                                }
                                 });
                             }
                         } catch (error) {
@@ -64,6 +70,9 @@ export function Signin(){
                                 icon: "error",
                                 timer: 3000,
                                 showConfirmButton: false,
+                                customClass: {
+                                                    popup: 'dark:bg-slate-500 dark:text-white' // Custom class applied to the main popup container
+                                                }
                             });
                         }
                     }}

@@ -13,8 +13,8 @@ const userSchema=new mongoose.Schema({
     firstName:{
         type: String,
         trim: true,
-        minLength:3,
-        maxLength:30,
+        minlength:3,
+        maxlength:30,
         require: true,
     },
     lastName:{
@@ -28,13 +28,13 @@ const userSchema=new mongoose.Schema({
         trim: true,
         unique:true,
         lowercase:true,
-        minLength:3,
-        maxLength:30,
+        minlength:3,
+        maxlength:30,
         require: true,
     },
     password:{
         type: String,
-        minLength:8,
+        minlength:8,
         require: true,
     }
 })
@@ -50,6 +50,24 @@ const accountSchema= new mongoose.Schema({
         required: true
     }
 })
+
+userSchema.pre('save', function (next) {
+    if (this.firstName) {
+        this.firstName = this.firstName
+            .toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+    if (this.lastName) {
+        this.lastName = this.lastName
+            .toLowerCase()
+            .split(' ')
+            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    }
+    next();
+});
 
 const User = mongoose.model('User', userSchema);
 const Account=mongoose.model('Account', accountSchema)

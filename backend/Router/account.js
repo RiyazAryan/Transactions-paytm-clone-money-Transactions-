@@ -59,7 +59,7 @@ router.post("/transfer", authMiddelware,async(req, res)=>{
     await session.commitTransaction();
     await session.endSession();
     return res.json({
-        message:"Transfer Successful -"+amount
+        message:"Transfer Successful Rs."+amount
     })
 }
 catch(error){

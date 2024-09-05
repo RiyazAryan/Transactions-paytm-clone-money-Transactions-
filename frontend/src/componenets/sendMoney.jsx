@@ -5,6 +5,7 @@ import {useState} from "react"
 import Swal from 'sweetalert2';
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { Buttonwarning } from "./Buttonwarning";
 
 export function Sendmoney(){
     const navigate=useNavigate()
@@ -27,10 +28,18 @@ export function Sendmoney(){
                 <div className="pt-1 dark:text-white text-md italic">
                     {details}
                 </div>
-                <div className="p-2 px-4">
-                    <Inputbox label={"Amount in Rs."} placeholder={"Enter Amount"} onChange={(e)=>setTransferamt(e.target.value)}/>
+                <div className="p-2 pb-1 px-4">
+                    <Inputbox label={"Amount in Rs."} type={Number} placeholder={"Enter Amount"} onChange={(e)=>setTransferamt(e.target.value)}/>
                     <Button label={"Initiate Transaction"}
                     onClick={async() => {
+                        if (Transferamt <= 0) {
+                                Swal.fire({
+                                    title: "Please enter valid amount",
+                                    timer: 3000,
+                                    showConfirmButton: false,
+                                });
+                            }
+                            else{
                         try {
                             const response = await axios.post("http://localhost:3000/api/v1/account/transfer", {
                                 to:localStorage.getItem("transfer"),
@@ -47,6 +56,9 @@ export function Sendmoney(){
                                     icon: "success",
                                     timer: 3000,
                                     showConfirmButton: false,
+                                    customClass: {
+                                        popup: 'dark:bg-slate-500 dark:text-white' // Custom class applied to the main popup container
+                                    }
                                 });
                             } else {
                                 Swal.fire({
@@ -55,6 +67,9 @@ export function Sendmoney(){
                                     icon: "Error",
                                     //timer: 3000,
                                     showConfirmButton: true,
+                                    customClass: {
+                                    popup: 'dark:bg-slate-500 dark:text-white' // Custom class applied to the main popup container
+                                }
                                 });
                             }
                         } catch (error) {
@@ -64,12 +79,16 @@ export function Sendmoney(){
                                 icon: "error",
                                 //timer: 3000,
                                 showConfirmButton: true,
+                                customClass: {
+                                    popup: 'dark:bg-slate-500 dark:text-white' // Custom class applied to the main popup container
+                                }
                             });
                         }
                         navigate("/dashboard")
                     }
-                    }/>
+                    }}/>
                 </div>
+                <Buttonwarning linktext={"Abort Transaction"} to={"/dashboard"}/>
             </div>
         </div>
     </div>

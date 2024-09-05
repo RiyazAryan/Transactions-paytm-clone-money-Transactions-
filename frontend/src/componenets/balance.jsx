@@ -13,7 +13,7 @@ export function Balance({label}){
     })
     },[balance])
     return(
-        <div className="p-5 text-2xl font-bold">
+        <div className="p-5 pt-[100px] text-2xl font-bold dark:text-white">
             <span>{label}</span>
         <div className="flex pt-4 pl-1">
             <div className="text-lg text-blue-500">
