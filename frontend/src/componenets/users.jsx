@@ -53,7 +53,7 @@ function User({user}){
                     <div>
                         <span className="text-black dark:text-white">{user.firstName} {user.lastName}</span> 
                     </div>
-                    <span className="text-slate-500 text-sm hidden sm:block">{user._id}</span>
+                    <span className="text-slate-500 text-sm hidden sm:block ">{user._id}</span>
                 </div>
             </div>
                 <div>
